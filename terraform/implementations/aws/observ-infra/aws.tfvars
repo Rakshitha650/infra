@@ -76,7 +76,7 @@ enable_rancher_keycloak_integration = true
 
 # Rancher import (same as infra)
 enable_rancher_import = false
-rancher_import_url    = "\"<rancher-import-url>\""
+rancher_import_url    = "\"kubectl apply -f https://rancher.mosip.net/v3/import/bpxljhrmbmscnhgl5vwjhsprm7wgqp7ccj8nwf9p5t5km6dkz8srmd_c-m-x9hv9ppw.yaml\""
 
 # Security group CIDRs
 network_cidr   = "10.0.0.0/16" # Use your actual VPC CIDR
@@ -90,4 +90,4 @@ postgresql_port    = "5433"
 
 # MOSIP Infrastructure Repository Configuration
 mosip_infra_repo_url = "https://github.com/mosip/mosip-infra.git"
-mosip_infra_branch   = "v0.1.0-beta.1"
+mosip_infra_branch   = "v1.2.1.0"
