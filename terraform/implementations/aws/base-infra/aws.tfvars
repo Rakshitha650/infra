@@ -12,7 +12,7 @@ jumpserver_name = "demo-mantra"
 mosip_email_id = "rakshitha.m@mantraidentity.com"
 
 # SSH key name for AWS instances
-ssh_key_name = "Mosip-Cluster.pem"
+ssh_key_name = "Mosip-Cluster"
 
 # AWS region
 aws_provider_region = "ap-south-1"
