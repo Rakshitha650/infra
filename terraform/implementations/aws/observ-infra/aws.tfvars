@@ -14,7 +14,7 @@ cluster_env_domain = "mosip-obsrv.mantra-identity.com"
 mosip_email_id = "rakshitha.m@mantraidentity.com"
 
 # SSH key name for AWS instances
-ssh_key_name = "Mantra-Cluster"
+ssh_key_name = "Mosip-Cluster"
 
 # AWS region
 aws_provider_region = "ap-south-1"
