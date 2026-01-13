@@ -27,7 +27,7 @@ jumpserver_ami_id = "ami-02b8269d5e85954ef"
 create_jumpserver_eip = false
 
 # Network configuration
-network_name       = "mantra-boxes"
+network_name       = "mosip-boxes"
 network_cidr       = "10.0.0.0/16"
 public_subnets     = ["10.0.1.0/24", "10.0.2.0/24"]
 private_subnets    = ["10.0.3.0/24", "10.0.4.0/24"]
