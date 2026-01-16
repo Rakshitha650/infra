@@ -95,7 +95,7 @@ variable "rancher_import_url" {
         var.rancher_import_url
       ))
     )
-    error_message = "The rancher_import_url must be empty or in the format: '\"kubectl apply -f https://<domain>/v3/import/<ID>.yaml\"'"
+    error_message = "The rancher_import_url must be empty or in the format"
   }
 }
 
