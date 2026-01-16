@@ -50,12 +50,9 @@ variable "RANCHER_IMPORT_URL" {
   validation {
     condition = (
       var.RANCHER_IMPORT_URL == "" ||
-      can(regex(
-        "^\"kubectl apply -f https://rancher\\.[a-zA-Z0-9.-]+/v3/import/[a-zA-Z0-9_\\-]+\\.yaml\"$",
-        var.RANCHER_IMPORT_URL
-      ))
+      can(regex("^\"kubectl apply -f https://[a-zA-Z0-9][a-zA-Z0-9\\-\\.]+[a-zA-Z0-9]\\.[a-zA-Z]{2,}/v3/import/[a-zA-Z0-9_\\-]+\\.yaml\"$", var.RANCHER_IMPORT_URL))
     )
-    error_message = "url aaaaaaaaaaaa"
+    error_message = "The RANCHER_IMPORT_URL must be empty or in the format: '\"kubectl apply -f https://<domain>/v3/import/<ID>.yaml\"'"
   }
 }
 
