@@ -55,7 +55,7 @@ variable "RANCHER_IMPORT_URL" {
         var.RANCHER_IMPORT_URL
       ))
     )
-    error_message = "The RANCHER_IMPORT_URL must be empty or in the format"
+    error_message = "url aaaaaaaaaaaa"
   }
 }
 
