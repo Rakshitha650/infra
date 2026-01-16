@@ -1,13 +1,13 @@
 ---
 all:
   vars:
-    cluster_name: "mosip-obsrv"
+    cluster_name: "demo"
     cluster_env_domain: "mosip.local"
-    k8s_infra_repo_url: "https://github.com/Rakshitha650/k8s-infra.git"
-    k8s_infra_branch: "develop"
+    k8s_infra_repo_url: "https://github.com/mosip/k8s-infra.git"
+    k8s_infra_branch: "v1.2.1.0"
     install_rke2_version: "v1.28.9+rke2r1"
-    enable_rancher_import: false
-    rancher_import_url: 
+    enable_rancher_import: true
+    rancher_import_url: "kubectl apply -f https://rancher.mosip-obsrv.mantra-identity.com/v3/import/559ddskkmxb77rct24c6qms7tlm7plbhshrkk5hksxjktdfbl9pkfb_c-m-kwq6rks9.yaml"
     ansible_user: ubuntu
     ansible_ssh_private_key_file: ./ssh_key
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
@@ -15,22 +15,47 @@ all:
   children:
     control_plane:
       hosts:
-        mosip-obsrv-CONTROL-PLANE-NODE-1:
-          ansible_host: 10.0.4.68
+        demo-CONTROL-PLANE-NODE-1:
+          ansible_host: 10.0.4.46
           node_role: control_plane
           is_primary: true
           node_index: 0
+        demo-CONTROL-PLANE-NODE-2:
+          ansible_host: 10.0.3.240
+          node_role: control_plane
+          is_primary: false
+          node_index: 1
+        demo-CONTROL-PLANE-NODE-3:
+          ansible_host: 10.0.4.142
+          node_role: control_plane
+          is_primary: false
+          node_index: 2
     
     etcd:
       hosts:
-        mosip-obsrv-ETCD-NODE-1:
-          ansible_host: 10.0.4.75
+        demo-ETCD-NODE-1:
+          ansible_host: 10.0.4.117
+          node_role: etcd
+        demo-ETCD-NODE-2:
+          ansible_host: 10.0.3.244
+          node_role: etcd
+        demo-ETCD-NODE-3:
+          ansible_host: 10.0.4.23
           node_role: etcd
     
     workers:
       hosts:
-        mosip-obsrv-WORKER-NODE-1:
-          ansible_host: 10.0.4.234
+        demo-WORKER-NODE-1:
+          ansible_host: 10.0.4.192
+          node_role: worker
+        demo-WORKER-NODE-2:
+          ansible_host: 10.0.3.117
+          node_role: worker
+        demo-WORKER-NODE-3:
+          ansible_host: 10.0.4.218
+          node_role: worker
+        demo-WORKER-NODE-4:
+          ansible_host: 10.0.3.155
           node_role: worker
 
     rke2_cluster:
