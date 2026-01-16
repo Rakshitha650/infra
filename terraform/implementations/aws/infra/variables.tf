@@ -84,7 +84,7 @@ variable "enable_rancher_import" {
 }
 
 variable "rancher_import_url" {
-   description = "Rancher import URL for kubectl apply. Can be empty when enable_rancher_import is false."
+  description = "Rancher import URL for kubectl apply. Can be empty when enable_rancher_import is false."
   type        = string
   default     = ""
   validation {
