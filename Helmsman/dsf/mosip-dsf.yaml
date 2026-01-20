@@ -72,8 +72,47 @@ apps:
     version: 1.3.0
     chart: mosip/config-server
     set:
-      # image.repository: "mosipdev/kernel-config-server"
-      # image.tag: "release-1.3.x"
+     image.repository: "mosipid/kernel-config-server"
+     image.tag: "1.3.0"
+     gitRepo.uri: "https://bitbucket.org/mantraidentity/demo-mosip-config" 
+     gitRepo.version: "demo-mosip-config"
+     gitRepo.searchFolders: ""
+     gitRepo.private: "true"
+     gitRepo.username: "raks33-admin"
+     gitRepo.token: ""
+     resources.limits.cpu: "500m"
+     resources.limits.memory: "2000Mi"
+     resources.requests.cpu: "200m"
+     resources.requests.memory: "1000Mi"
+     spring_profiles.enabled: true
+     spring_profiles.spring_profiles_active: "composite"
+     spring_profiles.spring_compositeRepos[0].type: "git"
+     spring_profiles.spring_compositeRepos[0].uri: "https://github.com/mosip/inji-config"
+     spring_profiles.spring_compositeRepos[0].version: "develop"
+     spring_profiles.spring_compositeRepos[0].spring_cloud_config_server_git_cloneOnStart: true
+     spring_profiles.spring_compositeRepos[0].spring_cloud_config_server_git_force_pull: true
+     spring_profiles.spring_compositeRepos[0].spring_cloud_config_server_git_refreshRate: 5
+     spring_profiles.spring_compositeRepos[1].type: "git"
+     spring_profiles.spring_compositeRepos[1].uri: "https://github.com/mosip/mosip-config"
+     spring_profiles.spring_compositeRepos[1].version: "soil-helmsman"
+     spring_profiles.spring_compositeRepos[1].spring_cloud_config_server_git_cloneOnStart: true
+     spring_profiles.spring_compositeRepos[1].spring_cloud_config_server_git_force_pull: true
+     spring_profiles.spring_compositeRepos[1].spring_cloud_config_server_git_refreshRate: 5
+     spring_profiles.spring_fail_on_composite_error: false
+     localRepo.enabled: false
+     localRepo.spring_profiles_active: "native"
+     localRepo.spring_cloud_config_server_native_search_locations: "file:///var/lib/config_repo"
+     localRepo.spring_cloud_config_server_accept_empty: true
+     localRepo.spring_cloud_config_server_git_force_pull: false
+     localRepo.spring_cloud_config_server_git_refreshRate: 0
+     localRepo.spring_cloud_config_server_git_cloneOnStart: false
+     volume.name: "config-server"
+     volume.storageClass: "nfs-client"
+     volume.accessModes[0]: "ReadWriteMany"
+     volume.size: "10Mi"
+     volume.mountDir: "/var/lib/config_repo"
+     volume.nfs.path: ""
+     volume.nfs.server: ""
     valuesFile: "$WORKDIR/utils/config-server-values.yaml"
     wait: true
     timeout: 1200
