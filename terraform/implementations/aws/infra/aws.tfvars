@@ -24,7 +24,7 @@ zone_id = "Z02277353HLIGZANGLVZF"
 
 ## UBUNTU 24.04
 # The Amazon Machine Image ID for the instances
-ami = "ami-02b8269d5e85954ef"
+ami = "ami-0ad21ae1d0696ad58"
 
 # Repo K8S-INFRA URL
 k8s_infra_repo_url = "https://github.com/mosip/k8s-infra.git"
