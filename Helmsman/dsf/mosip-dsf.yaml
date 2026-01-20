@@ -87,14 +87,14 @@ apps:
      spring_profiles.enabled: true
      spring_profiles.spring_profiles_active: "composite"
      spring_profiles.spring_compositeRepos[0].type: "git"
-     spring_profiles.spring_compositeRepos[0].uri: "https://github.com/mosip/inji-config"
-     spring_profiles.spring_compositeRepos[0].version: "develop"
+     spring_profiles.spring_compositeRepos[0].uri: "https://bitbucket.org/mantraidentity/demo-mosip-config"
+     spring_profiles.spring_compositeRepos[0].version: "demo-mosip-config"
      spring_profiles.spring_compositeRepos[0].spring_cloud_config_server_git_cloneOnStart: true
      spring_profiles.spring_compositeRepos[0].spring_cloud_config_server_git_force_pull: true
      spring_profiles.spring_compositeRepos[0].spring_cloud_config_server_git_refreshRate: 5
      spring_profiles.spring_compositeRepos[1].type: "git"
-     spring_profiles.spring_compositeRepos[1].uri: "https://github.com/mosip/mosip-config"
-     spring_profiles.spring_compositeRepos[1].version: "soil-helmsman"
+     spring_profiles.spring_compositeRepos[1].uri: "https://bitbucket.org/mantraidentity/inji-config"
+     spring_profiles.spring_compositeRepos[1].version: "demo-mantra"
      spring_profiles.spring_compositeRepos[1].spring_cloud_config_server_git_cloneOnStart: true
      spring_profiles.spring_compositeRepos[1].spring_cloud_config_server_git_force_pull: true
      spring_profiles.spring_compositeRepos[1].spring_cloud_config_server_git_refreshRate: 5
