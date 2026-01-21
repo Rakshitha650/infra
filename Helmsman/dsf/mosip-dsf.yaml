@@ -9,9 +9,9 @@ helmRepos:
 
 namespaces:
   conf-secrets:
-    protected: false
+    protected: true
   config-server:
-    protected: false
+    protected: true
   artifactory:
     protected: false
   captcha:
