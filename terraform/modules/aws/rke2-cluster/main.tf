@@ -39,15 +39,15 @@ variable "ENABLE_RANCHER_IMPORT" {
 }
 
 variable "RANCHER_IMPORT_URL" {
-  description = "Rancher import URL for kubectl apply"
+  description = "Rancher import URL for kubectl apply. Can be empty when ENABLE_RANCHER_IMPORT is false."
   type        = string
-
+  default     = ""
   validation {
     condition = (
-      can(regex("^\"kubectl apply -f https://rancher\\.mosip\\.net/v3/import/[a-zA-Z0-9_\\-]+\\.yaml\"$", var.RANCHER_IMPORT_URL)) ||
-      can(regex("^\"kubectl apply -f https://rancher\\.[a-zA-Z0-9\\*\\.\\-]+\\.net/v3/import/[a-zA-Z0-9_\\-]+\\.yaml\"$", var.RANCHER_IMPORT_URL))
+      var.RANCHER_IMPORT_URL == "" ||
+      can(regex("^\"kubectl apply -f https://[a-zA-Z0-9][a-zA-Z0-9\\-\\.]+[a-zA-Z0-9]\\.[a-zA-Z]{2,}/v3/import/[a-zA-Z0-9_\\-]+\\.yaml\"$", var.RANCHER_IMPORT_URL))
     )
-    error_message = "The RANCHER_IMPORT_URL must be in the format: '\"kubectl apply -f https://rancher.mosip.net/v3/import/<ID>.yaml\"' or '\"kubectl apply -f https://rancher.***.net/v3/import/<ID>.yaml\"'"
+    error_message = "The RANCHER_IMPORT_URL must be empty or in the format: '\"kubectl apply -f https://<domain>/v3/import/<ID>.yaml\"'"
   }
 }
 # Token generation handled by ansible for better security and distribution
