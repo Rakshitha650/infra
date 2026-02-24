@@ -1,7 +1,7 @@
 helmDefaults:
   tillerNamespace: kube-system
-  tillerless: true
-  install: true
+  tillerless: false
+  install: false
 
 helmRepos:
   bitnami: https://charts.bitnami.com/bitnami
@@ -12,27 +12,27 @@ helmRepos:
 # Note: Based on your requirement disable the namespaces which you want to use, by default all the namespaces are protected.
 namespaces:
   postgres:
-    protected: true
+    protected: false
   keycloak:
-    protected: true
+    protected: false
   softhsm:
-    protected: true
+    protected: false
   minio:
-    protected: true
+    protected: false
   clamav:
-    protected: true
+    protected: false
   activemq:
-    protected: true
+    protected: false
   kafka:
-    protected: true
+    protected: false
   s3:
-    protected: true
+    protected: false
   msg-gateways:
-    protected: true
+    protected: false
   captcha:
-    protected: true
+    protected: false
   landing-page:
-    protected: true
+    protected: false
 
 apps:
   postgres:
@@ -40,110 +40,110 @@ apps:
     enabled: false
     version: 13.1.5
     chart: bitnami/postgresql
-    wait: true
+    wait: false
     priority: -16
     valuesFile: "$WORKDIR/utils/postgres-values.yaml"
     timeout: 1200
 
   istio-addons-psql:
     namespace: postgres
-    enabled: true
+    enabled: false
     version: 0.1.0
     chart: $WORKDIR/utils/istio-addons/postgres-istio-addons-0.1.0.tgz
     set:
       postgresHost: "postgres.sandbox.xyz.net"
-    wait: true
+    wait: false
     priority: -4
     timeout: 1200
 
   postgres-init:
     namespace: postgres
-    enabled: true
+    enabled: false
     version: 12.0.1
     chart: mosip/postgres-init
     set:
       dbUserPasswords.dbuserPassword: ""
-      databases.mosip_master.enabled: "true"
+      databases.mosip_master.enabled: "false"
       databases.mosip_master.branch: "v1.2.1.4"
       databases.mosip_master.host: "postgres.sandbox.xyz.net"
       databases.mosip_master.port: 5433
 
-      databases.mosip_audit.enabled: "true"
+      databases.mosip_audit.enabled: "false"
       databases.mosip_audit.branch: "v1.2.0.1"
       databases.mosip_audit.host: "postgres.sandbox.xyz.net"
       databases.mosip_audit.port: 5433
 
-      databases.mosip_keymgr.enabled: "true"
+      databases.mosip_keymgr.enabled: "false"
       databases.mosip_keymgr.branch: "v1.2.1.0"
       databases.mosip_keymgr.host: "postgres.sandbox.xyz.net"
       databases.mosip_keymgr.port: 5433
 
-      databases.mosip_kernel.enabled: "true"
+      databases.mosip_kernel.enabled: "false"
       databases.mosip_kernel.branch: " v1.2.0.2"
       databases.mosip_kernel.host: "postgres.sandbox.xyz.net"
       databases.mosip_kernel.port: 5433
 
-      databases.mosip_idmap.enabled: "true"
+      databases.mosip_idmap.enabled: "false"
       databases.mosip_idmap.branch: "v1.2.2.4"
       databases.mosip_idmap.host: "postgres.sandbox.xyz.net"
       databases.mosip_idmap.port: 5433
 
-      databases.mosip_prereg.enabled: "true"
+      databases.mosip_prereg.enabled: "false"
       databases.mosip_prereg.branch: "v1.2.0.3"
       databases.mosip_prereg.host: "postgres.sandbox.xyz.net"
       databases.mosip_prereg.port: 5433
 
-      databases.mosip_idrepo.enabled: "true"
+      databases.mosip_idrepo.enabled: "false"
       databases.mosip_idrepo.branch: "v1.2.2.4"
       databases.mosip_idrepo.host: "postgres.sandbox.xyz.net"
       databases.mosip_idrepo.port: 5433
 
-      databases.mosip_ida.enabled: "true"
+      databases.mosip_ida.enabled: "false"
       databases.mosip_ida.branch: "v1.2.1.3"
       databases.mosip_ida.host: "postgres.sandbox.xyz.net"
       databases.mosip_ida.port: 5433
 
-      databases.mosip_credential.enabled: "true"
+      databases.mosip_credential.enabled: "false"
       databases.mosip_credential.branch: "v1.2.2.4"
       databases.mosip_credential.host: "postgres.sandbox.xyz.net"
       databases.mosip_credential.port: 5433
 
-      databases.mosip_regprc.enabled: "true"
+      databases.mosip_regprc.enabled: "false"
       databases.mosip_regprc.branch: "v1.2.1.2"
       databases.mosip_regprc.host: "postgres.sandbox.xyz.net"
       databases.mosip_regprc.port: 5433
 
-      databases.mosip_pms.enabled: "true"
+      databases.mosip_pms.enabled: "false"
       databases.mosip_pms.branch: "v1.2.2.3"
       databases.mosip_pms.host: "postgres.sandbox.xyz.net"
       databases.mosip_pms.port: 5433
 
-      databases.mosip_hotlist.enabled: "true"
+      databases.mosip_hotlist.enabled: "false"
       databases.mosip_hotlist.branch: "v1.2.1.4"
       databases.mosip_hotlist.host: "postgres.sandbox.xyz.net"
       databases.mosip_hotlist.port: 5433
 
-      databases.mosip_resident.enabled: "true"
+      databases.mosip_resident.enabled: "false"
       databases.mosip_resident.branch: "v1.2.1.3"
       databases.mosip_resident.host: "postgres.sandbox.xyz.net"
       databases.mosip_resident.port: 5433
 
-      databases.mosip_otp.enabled: "true"
+      databases.mosip_otp.enabled: "false"
       databases.mosip_otp.branch: "v1.3.0-beta.1"
       databases.mosip_otp.host: "postgres.sandbox.xyz.net"
       databases.mosip_otp.port: 5433
 
-      databases.mosip_digitalcard.enabled: "true"
+      databases.mosip_digitalcard.enabled: "false"
       databases.mosip_digitalcard.branch: "v1.2.0.1"
       databases.mosip_digitalcard.host: "postgres.sandbox.xyz.net"
       databases.mosip_digitalcard.port: 5433
-    wait: true
+    wait: false
     timeout: 1200
     priority: -15
 
   keycloak:
     namespace: keycloak
-    enabled: true
+    enabled: false
     version: 7.1.18
     chart: mosip/keycloak
     set:
@@ -161,38 +161,38 @@ apps:
       ingress.enabled: "false"
       ingress.hostname: ""
       ingress.annotations.ingress\.kubernetes\.io/class: "nginx"
-      proxyAddressForwarding: "true"
+      proxyAddressForwarding: "false"
       replicaCount: "1"
-      serviceDiscovery.enabled: "true"
+      serviceDiscovery.enabled: "false"
       # resources.limits.cpu: "250m"
       # resources.limits.memory: "1Gi"
       resources.requests.cpu: "200m"
       resources.requests.memory: "1000Mi"
-      rbac.create: "true"
+      rbac.create: "false"
       rbac.rules[0].apiGroups[0]: ""
       rbac.rules[0].resources[0]: "pods"
       rbac.rules[0].verbs[0]: "get"
       rbac.rules[0].verbs[1]: "list"
-    wait: true
+    wait: false
     timeout: 1200
     priority: -14
 
   istio-addons-iam:
     namespace: keycloak
-    enabled: true
+    enabled: false
     version: 0.1.0
     chart: $WORKDIR/utils/istio-addons/iam-istio-addons-0.1.0.tgz
     set:
       keycloakExternalHost: "iam.sandbox.xyz.net"
       keycloakInternalHost: "keycloak.keycloak"
       service: "keycloak"
-    wait: true
+    wait: false
     timeout: 1200
     priority: -3
 
   keycloak-init:
     namespace: keycloak
-    enabled: true
+    enabled: false
     version: 12.0.2
     chart: mosip/keycloak-init
     set:
@@ -206,14 +206,14 @@ apps:
       keycloak.realms.mosip.realm_config.smtpServer.port: "465"
       keycloak.realms.mosip.realm_config.smtpServer.from: "mosipqa@gmail.com"
       keycloak.realms.mosip.realm_config.smtpServer.starttls: "false"
-      keycloak.realms.mosip.realm_config.smtpServer.ssl: "true"
-    wait: true
+      keycloak.realms.mosip.realm_config.smtpServer.ssl: "false"
+    wait: false
     timeout: 1200
     priority: -13
 
   softhsm-kernel:
     namespace: softhsm
-    enabled: true
+    enabled: false
     version: 12.0.1
     chart: mosip/softhsm
     set:
@@ -221,13 +221,13 @@ apps:
       # resources.limits.memory: "1Gi"
       resources.requests.cpu: "100m"
       resources.requests.memory: "100Mi"
-    wait: true
+    wait: false
     timeout: 1200
     priority: -12
 
   softhsm-ida:
     namespace: softhsm
-    enabled: true
+    enabled: false
     version: 12.0.1
     chart: mosip/softhsm
     set:
@@ -235,36 +235,36 @@ apps:
       # resources.limits.memory: "1Gi"
       resources.requests.cpu: "100m"
       resources.requests.memory: "200Mi"
-    wait: true
+    wait: false
     timeout: 1200
     priority: -11
 
   minio:
     namespace: minio
-    enabled: true
+    enabled: false
     version: 10.1.6
     chart: mosip/minio
     set:
       image.repository: "mosipid/minio"
       image.tag: "2022.2.7-debian-10-r0"
-      metrics.serviceMonitor.enabled: "true"
+      metrics.serviceMonitor.enabled: "false"
       extraEnvVars[0].name: "MINIO_PROMETHEUS_URL"
       extraEnvVars[0].value: "http://rancher-monitoring-prometheus.cattle-monitoring-system:9090"
       extraEnvVars[1].name: "MINIO_PROMETHEUS_JOB_ID"
       extraEnvVars[1].value: "minio"
       resourcesPreset: "none"
-    wait: true
+    wait: false
     timeout: 1200
     priority: -10
 
   istio-addons-minio:
     namespace: minio
-    enabled: true
+    enabled: false
     version: 1.2.0
     chart: $WORKDIR/utils/istio-addons/minio-istio-addons-1.2.0.tgz
     set:
       externalHost: "minio.sandbox.xyz.net"
-    wait: true
+    wait: false
     timeout: 1200
     hooks:
       postInstall: "$WORKDIR/hooks/s3-setup.sh "
@@ -272,7 +272,7 @@ apps:
 
   clamav:
     namespace: clamav
-    enabled: true
+    enabled: false
     version: 3.1.0
     chart: wiremind/clamav
     set:
@@ -282,21 +282,21 @@ apps:
       image.repository: "mosipid/clamav"
       image.tag: "1.2"
       # image.pullPolicy: "Always"
-    wait: true
+    wait: false
     timeout: 1200
     priority: -9
 
   activemq:
     namespace: activemq
-    enabled: true
+    enabled: false
     version: 0.0.2
     chart: mosip/activemq-artemis
     set: 
-      istio.enabled: "true"
+      istio.enabled: "false"
       istio.hosts[0]: "activemq.sandbox.xyz.net"
       istio.ingressController.name: "ingressgateway-internal"
       istio.prefix: ""
-    wait: true
+    wait: false
     timeout: 1200
     priority: -8
     hooks:
@@ -308,7 +308,7 @@ apps:
 
   kafka: 
     namespace: kafka
-    enabled: true
+    enabled: false
     version: 18.3.1
     chart: bitnami/kafka
     set:
@@ -324,32 +324,32 @@ apps:
       transactionStateLogReplicationFactor: "3"
       numPartitions: "20"
       replicaCount: "5"
-      autoCreateTopicsEnable: "true"
-      deleteTopicEnable: "true"
-      persistence.enabled: "true"
+      autoCreateTopicsEnable: "false"
+      deleteTopicEnable: "false"
+      persistence.enabled: "false"
       persistence.accessModes[0]: "ReadWriteOnce"
       persistence.size: "8Gi"
-      zookeeper.enabled: "true"
+      zookeeper.enabled: "false"
       zookeeper.replicaCount: "5"
-      zookeeper.persistence.enabled: "true"
+      zookeeper.persistence.enabled: "false"
       zookeeper.persistence.size: "2Gi"
       # resources.limits.cpu: "250m"
       # resources.limits.memory: "1Gi"
       resources.requests.cpu: "200m"
       resources.requests.memory: "2000Mi"
-      startupProbe.enabled: "true"
+      startupProbe.enabled: "false"
       startupProbe.initialDelaySeconds: "30"
       startupProbe.periodSeconds: "10"
       startupProbe.timeoutSeconds: "1"
       startupProbe.failureThreshold: "30"
       startupProbe.successThreshold: "1"
-    wait: true
+    wait: false
     timeout: 1200
     priority: -7
 
   kafka-ui:
     namespace: kafka
-    enabled: true
+    enabled: false
     version: 0.4.2
     chart: kafka-ui/kafka-ui
     set:
@@ -364,19 +364,19 @@ apps:
       envs.config.KAFKA_CLUSTERS_0_KAFKACONNECT_1_ADDRESS: "http://es-connect.reporting:8083"
       envs.config.KAFKA_CLUSTERS_0_KAFKACONNECT_1_NAME: "es-connect"
       image.pullPolicy: "Always"
-    wait: true
+    wait: false
     timeout: 1200
     priority: -6
 
   istio-addons-kafka:
     namespace: kafka
-    enabled: true
+    enabled: false
     version: 1.2.0
     chart: $WORKDIR/utils/istio-addons/kafka-istio-addons-1.2.0.tgz
     set:
       kafkaUiHost: "kafka.sandbox.xyz.net"
       installName: "kafka-ui"
-    wait: true
+    wait: false
     timeout: 1200
     hooks:
       postInstall: "$WORKDIR/hooks/msg-gateways-setup.sh"
@@ -384,7 +384,7 @@ apps:
 
   landing-page:
     namespace: landing-page
-    enabled: true
+    enabled: false
     version: 12.0.2
     chart: mosip/landing-page
     set:
@@ -411,7 +411,7 @@ apps:
       landing.injiweb: "injiweb.sandbox.xyz.net"
       landing.injiverify: "injiverify.sandbox.xyz.net"
       istio.host: "sandbox.xyz.net"
-    wait: true
+    wait: false
     timeout: 1200
     hooks:
       preInstall: "$WORKDIR/hooks/landing-page.sh"
